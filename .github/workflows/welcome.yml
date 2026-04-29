@@ -1,0 +1,30 @@
+name: Welcome new contributors
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            Hey! 👋 Thanks for opening your first issue here.
+
+            A maintainer will respond as soon as possible. While you wait, please make sure you've read [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) and the [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) — especially the **Security & Ethics** section if your issue touches third-party software.
+
+            If your question is more conversational than actionable, [Discussions](../discussions) is usually the right place.
+
+            ---
+
+            🇧🇷 Olá! 👋 Obrigado por abrir sua primeira issue por aqui.
+
+            Um mantenedor vai responder o quanto antes. Enquanto isso, certifique-se de ter lido o [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) e o [Código de Conduta](../blob/main/CODE_OF_CONDUCT.md) — em especial a seção **Segurança & Ética** se sua issue toca em software de terceiros.
+
+            Se sua questão é mais conversa do que ação, [Discussions](../discussions) costuma ser o lugar certo.

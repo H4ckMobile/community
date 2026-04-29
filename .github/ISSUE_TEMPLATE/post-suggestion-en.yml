@@ -1,0 +1,73 @@
+name: 💡 Post suggestion (EN)
+description: Suggest a topic for a future post on h4ckmobile.com.
+title: "[suggestion] "
+labels: ["suggestion", "triage", "lang:en"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Suggested topic
+      description: One specific topic — not "Frida in general", but a concrete angle.
+      placeholder: Bypass SSL pinning on apps using a custom OkHttp factory with Frida
+    validations:
+      required: true
+
+  - type: dropdown
+    id: post-type
+    attributes:
+      label: Type of post
+      options:
+        - Study
+        - Arsenal
+        - News
+        - Writeup
+        - Cheatsheet
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Android
+        - iOS
+        - Cross-platform
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Expected level
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this would help the community
+      description: One sentence is enough. What gap does it fill?
+      placeholder: There's no clear writeup on bypassing custom OkHttp factories with Frida — most posts only cover the default factory.
+    validations:
+      required: true
+
+  - type: textarea
+    id: material
+    attributes:
+      label: Do you have material to contribute?
+      description: Optional. Links, repos, notes, screenshots, draft text — anything that helps the post happen faster.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

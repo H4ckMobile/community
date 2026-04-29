@@ -1,0 +1,54 @@
+name: 🐛 Post correction (EN)
+description: Report a typo, technical error, broken link, or outdated information in a post.
+title: "[correction] "
+labels: ["correction", "triage", "lang:en"]
+body:
+  - type: input
+    id: post-url
+    attributes:
+      label: Post URL
+      description: Link to the post (PT or EN version)
+      placeholder: https://h4ckmobile.com/en/studies/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of correction
+      options:
+        - Typo / grammar
+        - Technical error
+        - Broken link
+        - Outdated information
+        - Code that doesn't work
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Where exactly?
+      description: Quote the affected sentence/paragraph or describe the section.
+      placeholder: |
+        In section "Bypass com Frida", the sentence:
+        > "Use frida-server version 16.0..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction
+      description: What should it say instead?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

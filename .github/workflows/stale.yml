@@ -1,0 +1,37 @@
+name: Mark stale issues
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: 60
+          days-before-close: 14
+          stale-issue-label: 'stale'
+          stale-issue-message: |
+            This issue has been inactive for 60 days. It will be closed in 14 days if there's no further activity.
+
+            If it's still relevant, leave a comment with the current state and the `stale` label will be removed.
+
+            ---
+
+            🇧🇷 Esta issue está inativa há 60 dias. Será fechada em 14 dias se não houver nova atividade.
+
+            Se ainda for relevante, comente com o estado atual e a label `stale` será removida.
+          close-issue-message: |
+            Closing as stale after 14 days without activity. Reopen any time if it's still relevant — context welcome.
+
+            ---
+
+            🇧🇷 Fechando por inatividade após 14 dias. Reabra a qualquer momento se ainda for relevante — contexto é bem-vindo.
+          days-before-pr-stale: -1
+          days-before-pr-close: -1

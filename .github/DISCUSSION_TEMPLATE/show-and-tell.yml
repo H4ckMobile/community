@@ -1,0 +1,65 @@
+title: "[show] "
+labels: ["showcase"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share something you built, found, or wrote — a tool, a writeup, a CTF solve, a research note. Conversational and informal; no need for a polished blog post.
+
+        **Scope reminder**: only share work from **authorized testing** (your own systems, explicit scope, public CTFs, properly disclosed research). The Security & Ethics section of the [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) applies.
+
+        ---
+
+        🇧🇷 Compartilhe algo que você construiu, descobriu ou escreveu — uma ferramenta, writeup, solve de CTF, nota de pesquisa. Informal; não precisa ser post pronto.
+
+        **Lembrete de escopo**: só compartilhe trabalho de **testes autorizados** (sistemas próprios, escopo explícito, CTFs públicos, pesquisa com disclosure adequado). A seção de Segurança & Ética do [Código de Conduta](../blob/main/CODE_OF_CONDUCT.md) se aplica.
+
+  - type: input
+    id: what
+    attributes:
+      label: What did you build or find? / O que você construiu ou descobriu?
+      placeholder: A frida script that auto-detects which OkHttp version an app uses and picks the right pinning bypass.
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Link / Link
+      description: Repo, gist, writeup, video — wherever it lives. Optional.
+      placeholder: https://github.com/your-handle/...
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary / Resumo
+      description: Context, approach, result. What was the problem, how did you tackle it, what came out the other side?
+      placeholder: |
+        While working through the SSL pinning post on h4ckmobile, I noticed the script in the post only handles OkHttp 3. Apps I see in the wild are split between 3 and 4. I wrote a small frida script that reads the OkHttp version from the bytecode metadata and dispatches to the right hook. Tested on 12 apps; works on 11.
+    validations:
+      required: true
+
+  - type: textarea
+    id: learned
+    attributes:
+      label: What you learned / O que aprendeu
+      description: Surprises, dead ends, what you'd do differently. Optional but interesting.
+      placeholder: |
+        - The bytecode metadata field name changed between OkHttp 4.0 and 4.5 — had to fall back to a class-presence check
+        - Tried using Reflection from frida first; way slower than reading the dex directly
+
+  - type: checkboxes
+    id: ethics
+    attributes:
+      label: Ethics & scope / Ética & escopo
+      options:
+        - label: This is from authorized testing only (own systems, explicit scope, public CTF, or properly disclosed research). No premature 0-day disclosure on third-party software. / Isto vem apenas de testes autorizados (sistemas próprios, escopo explícito, CTF público, ou pesquisa com disclosure adequado). Sem disclosure prematuro de 0-day em software de terceiros.
+          required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct / Código de Conduta
+      options:
+        - label: I agree to follow this project's Code of Conduct / Concordo em seguir o Código de Conduta deste projeto
+          required: true

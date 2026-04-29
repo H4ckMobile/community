@@ -1,0 +1,24 @@
+name: Auto-label issues and discussions
+
+on:
+  issues:
+    types: [opened, edited]
+  discussion:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  issues: write
+  discussions: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: srvaroa/labeler@v1
+        with:
+          config_path: .github/labeler.yml
+          use_local_config: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

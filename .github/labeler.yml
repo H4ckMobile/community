@@ -1,0 +1,30 @@
+version: 1
+
+labels:
+  - label: question
+    matcher:
+      title: '^\[(Q&A|question)\]'
+
+  - label: idea
+    matcher:
+      title: '^\[idea\]'
+
+  - label: showcase
+    matcher:
+      title: '^\[show\]'
+
+  - label: correction
+    matcher:
+      title: '^\[correction\]'
+
+  - label: site-bug
+    matcher:
+      title: '^\[site-bug\]'
+
+  - label: suggestion
+    matcher:
+      title: '^\[suggestion\]'
+
+  - label: triage
+    matcher:
+      title: '^\[(correction|site-bug|question|suggestion)\]'

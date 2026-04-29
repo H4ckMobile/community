@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a question (Discussions)
+    url: https://github.com/h4ckmobile/community/discussions/categories/q-a
+    about: For technical questions, use Discussions instead of Issues.
+  - name: 💡 Share an idea (Discussions)
+    url: https://github.com/h4ckmobile/community/discussions/categories/ideas
+    about: General ideas and brainstorming go in Discussions.
+  - name: 🎯 Show and tell (Discussions)
+    url: https://github.com/h4ckmobile/community/discussions/categories/show-and-tell
+    about: Built or found something interesting? Share it in Discussions.
+  - name: 🔒 Security disclosure
+    url: mailto:contact@h4ckmobile.com
+    about: Found a vulnerability in the site itself? Email contact@h4ckmobile.com — do not open a public issue.
+  - name: 🌐 Visit the blog
+    url: https://h4ckmobile.com
+    about: Read the blog at h4ckmobile.com.

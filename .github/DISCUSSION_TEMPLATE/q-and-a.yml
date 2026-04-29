@@ -1,0 +1,63 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category for **technical questions** about mobile security or about a specific post on [h4ckmobile.com](https://h4ckmobile.com).
+
+        If your question is actually a **bug report** for a post (broken example, wrong command, unclear behavior), open an Issue with the `❓ Technical question` template instead — it routes to the right place faster.
+
+        ---
+
+        🇧🇷 Use esta categoria para **dúvidas técnicas** sobre mobile security ou sobre um post específico do [h4ckmobile.com](https://h4ckmobile.com).
+
+        Se sua dúvida é na verdade um **bug em post** (exemplo quebrado, comando errado, comportamento inesperado), abra uma Issue com o template `❓ Pergunta técnica` — vai pro fluxo certo mais rápido.
+
+  - type: input
+    id: post-related
+    attributes:
+      label: Related post / Post relacionado
+      description: Link to the post your question is about, if any. Optional — general questions are welcome too.
+      placeholder: https://h4ckmobile.com/en/studies/...
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question / Sua dúvida
+      description: Be specific. What are you trying to do, what did you expect, what's confusing?
+      placeholder: |
+        I'm trying to bypass SSL pinning on an Android app that uses a custom OkHttp factory. The standard frida script from the post hooks `checkServerTrusted` but the app still rejects my proxy cert. Is there a step I'm missing for custom factories?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you've already tried / O que você já tentou
+      description: Steps taken, sources checked, results observed. Avoids back-and-forth and helps others find the answer later.
+      placeholder: |
+        - Ran the frida script from the post — no errors but cert still rejected
+        - Checked OkHttp source for `CertificatePinner` — found a different code path
+        - Searched existing Q&As here — found one for OkHttp 3.x but I'm on 4.x
+    validations:
+      required: true
+
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup (if relevant) / Setup (se relevante)
+      description: OS, tool versions, device/emulator. Skip if the question is conceptual.
+      placeholder: |
+        - macOS 14.4 (host)
+        - Android 13 emulator (Pixel 6 API 33)
+        - frida 16.2.1, frida-server 16.2.1
+        - Target app: OkHttp 4.12.0
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct / Código de Conduta
+      options:
+        - label: I agree to follow this project's Code of Conduct / Concordo em seguir o Código de Conduta deste projeto
+          required: true

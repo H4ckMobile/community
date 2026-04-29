@@ -1,0 +1,84 @@
+name: 🔧 Site bug (EN)
+description: Report a bug on the h4ckmobile.com site itself (not in a post's content).
+title: "[site-bug] "
+labels: ["site-bug", "triage", "lang:en"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Security note** — if this is a vulnerability (XSS, auth bypass, data exposure, etc.), **do not open a public issue**. Email `contact@h4ckmobile.com` instead. See [CONTRIBUTING.md → Reporting a security vulnerability](../blob/main/CONTRIBUTING.md#reporting-a-security-vulnerability).
+
+        For functional bugs (broken layout, 404s, search not working, etc.), please continue below.
+
+  - type: input
+    id: url
+    attributes:
+      label: Affected URL
+      description: Where on the site did you hit the bug?
+      placeholder: https://h4ckmobile.com/en/arsenal/...
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser + version
+      placeholder: Chrome 120.0.6099, Firefox 121, Safari 17.2
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Mobile or desktop, plus OS.
+      placeholder: Desktop — macOS 14.4 / Mobile — iPhone 14, iOS 17.2
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: What you saw. Include exact steps to reproduce if possible.
+      placeholder: |
+        1. Opened https://h4ckmobile.com/en/arsenal/
+        2. Clicked the "Tags" filter
+        3. Page reloaded but no filter was applied
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      placeholder: Filtered post list showing only posts with the selected tag.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Optional — drag and drop an image here. Helps a lot for visual bugs.
+    validations:
+      required: false
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors
+      description: Optional — open DevTools (F12), reproduce the bug, copy any red errors from the Console tab.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+        - label: This is not a security vulnerability (if it is, I'll email contact@h4ckmobile.com instead)
+          required: true

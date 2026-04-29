@@ -1,0 +1,94 @@
+name: Mark stale discussions
+
+on:
+  schedule:
+    - cron: '15 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  discussions: write
+
+jobs:
+  stale-discussions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mark and close stale discussions
+        uses: actions/github-script@v7
+        env:
+          STALE_DAYS: '60'
+          CLOSE_DAYS: '14'
+          STALE_LABEL: 'stale'
+          STALE_MESSAGE: |
+            This discussion has been inactive for 60 days. It will be closed in 14 days if there's no further activity.
+
+            ---
+
+            🇧🇷 Esta discussion está inativa há 60 dias. Será fechada em 14 dias se não houver nova atividade.
+          CLOSE_MESSAGE: |
+            Closing as stale after 14 days without activity. Reopen if it becomes relevant again.
+
+            ---
+
+            🇧🇷 Fechando por inatividade após 14 dias. Reabra se voltar a ser relevante.
+        with:
+          script: |
+            const staleDays = Number(process.env.STALE_DAYS);
+            const closeDays = Number(process.env.CLOSE_DAYS);
+            const staleLabel = process.env.STALE_LABEL;
+            const staleMsg = process.env.STALE_MESSAGE;
+            const closeMsg = process.env.CLOSE_MESSAGE;
+            const now = Date.now();
+            const staleCutoff = now - staleDays * 86400000;
+            const closeCutoff = now - closeDays * 86400000;
+
+            const repoQuery = `query($owner:String!, $name:String!) {
+              repository(owner:$owner, name:$name) {
+                id
+                label(name:"${staleLabel}") { id }
+                discussions(first:100, states:OPEN, orderBy:{field:UPDATED_AT, direction:ASC}) {
+                  nodes {
+                    id number title updatedAt
+                    labels(first:20) { nodes { id name } }
+                  }
+                }
+              }
+            }`;
+            const repo = await github.graphql(repoQuery, {
+              owner: context.repo.owner,
+              name: context.repo.repo,
+            });
+            const labelId = repo.repository.label?.id;
+            if (!labelId) {
+              core.setFailed(`Label "${staleLabel}" does not exist in this repo. Create it first.`);
+              return;
+            }
+
+            for (const d of repo.repository.discussions.nodes) {
+              const updated = new Date(d.updatedAt).getTime();
+              const hasStale = d.labels.nodes.some(l => l.name === staleLabel);
+
+              if (!hasStale && updated < staleCutoff) {
+                core.info(`Marking #${d.number} stale (${d.title})`);
+                await github.graphql(
+                  `mutation($id:ID!, $labels:[ID!]!) { addLabelsToLabelable(input:{labelableId:$id, labelIds:$labels}) { clientMutationId } }`,
+                  { id: d.id, labels: [labelId] }
+                );
+                await github.graphql(
+                  `mutation($id:ID!, $body:String!) { addDiscussionComment(input:{discussionId:$id, body:$body}) { clientMutationId } }`,
+                  { id: d.id, body: staleMsg }
+                );
+                continue;
+              }
+
+              if (hasStale && updated < closeCutoff) {
+                core.info(`Closing #${d.number} (${d.title})`);
+                await github.graphql(
+                  `mutation($id:ID!, $body:String!) { addDiscussionComment(input:{discussionId:$id, body:$body}) { clientMutationId } }`,
+                  { id: d.id, body: closeMsg }
+                );
+                await github.graphql(
+                  `mutation($id:ID!) { closeDiscussion(input:{discussionId:$id, reason:OUTDATED}) { clientMutationId } }`,
+                  { id: d.id }
+                );
+              }
+            }

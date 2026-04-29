@@ -1,0 +1,54 @@
+name: 🐛 Correção de post (PT)
+description: Reportar erro de digitação, erro técnico, link quebrado ou informação desatualizada em um post.
+title: "[correction] "
+labels: ["correction", "triage", "lang:pt"]
+body:
+  - type: input
+    id: post-url
+    attributes:
+      label: URL do post
+      description: Link do post (versão PT ou EN)
+      placeholder: https://h4ckmobile.com/pt/studies/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Tipo de correção
+      options:
+        - Typo / grammar
+        - Technical error
+        - Broken link
+        - Outdated information
+        - Code that doesn't work
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Onde exatamente?
+      description: Cite o trecho/parágrafo afetado ou descreva a seção.
+      placeholder: |
+        Na seção "Bypass com Frida", a frase:
+        > "Use frida-server version 16.0..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Correção sugerida
+      description: O que deveria estar escrito no lugar?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true

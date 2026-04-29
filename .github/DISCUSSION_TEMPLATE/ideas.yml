@@ -1,0 +1,63 @@
+title: "[idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category to **brainstorm** — feature ideas for the blog, content directions, tooling, or community improvements. Ideas don't need to be fully baked.
+
+        For a **specific post topic suggestion**, use the `💡 Post suggestion` Issue template instead — it has the criteria the maintainer needs to act on it.
+
+        ---
+
+        🇧🇷 Use esta categoria para **brainstorm** — ideias de funcionalidade pro blog, direções de conteúdo, ferramentas ou melhorias na comunidade. Ideias não precisam estar prontas.
+
+        Pra **sugestão de tema de post específico**, use o template `💡 Post suggestion` em Issues — ele tem os critérios que o mantenedor precisa pra agir.
+
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary / Resumo em uma linha
+      placeholder: Add a "tools index" page that maps each tool mentioned across posts to where it shows up.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem or gap does this address? / Que problema ou lacuna isso endereça?
+      description: Why does this matter? Who benefits? Without this, the idea is hard to evaluate.
+      placeholder: |
+        When I'm researching a tool (say, Frida), I have to grep across posts to find every place it's used. A consolidated index would let readers jump from "I know I want to use X" to "here are all the posts that touch X."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: How would it work? / Como funcionaria?
+      description: Rough sketch of the implementation, UX, or content shape. Doesn't need to be exhaustive.
+      placeholder: |
+        - A single Markdown page generated from post frontmatter (each post lists tools it uses)
+        - One section per tool, sorted alphabetically
+        - Each section: 1-line description + bullet list of posts linking to the tool's section
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered / Alternativas consideradas
+      description: Other approaches you thought about and why this one wins. Optional.
+      placeholder: |
+        - Tags page: too coarse, mixes topics with tools
+        - Search: requires the reader to know exact tool name
+        - Per-tool tags: clutters the tag list
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct / Código de Conduta
+      options:
+        - label: I agree to follow this project's Code of Conduct / Concordo em seguir o Código de Conduta deste projeto
+          required: true

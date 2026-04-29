@@ -1,0 +1,84 @@
+name: 🔧 Bug do site (PT)
+description: Reportar bug no próprio site h4ckmobile.com (não no conteúdo de um post).
+title: "[site-bug] "
+labels: ["site-bug", "triage", "lang:pt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Aviso de segurança** — se isso é uma vulnerabilidade (XSS, bypass de auth, exposição de dados, etc.), **não abra uma issue pública**. Envie email para `contact@h4ckmobile.com`. Veja [CONTRIBUTING.md → Reportando uma vulnerabilidade de segurança](../blob/main/CONTRIBUTING.md#reportando-uma-vulnerabilidade-de-segurança).
+
+        Para bugs funcionais (layout quebrado, 404, busca não funciona, etc.), siga abaixo.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL afetada
+      description: Onde no site você bateu no bug?
+      placeholder: https://h4ckmobile.com/pt/arsenal/...
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser + versão
+      placeholder: Chrome 120.0.6099, Firefox 121, Safari 17.2
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Dispositivo
+      description: Mobile ou desktop, mais o sistema operacional.
+      placeholder: Desktop — macOS 14.4 / Mobile — iPhone 14, iOS 17.2
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: O que aconteceu
+      description: O que você viu. Inclua passos exatos pra reproduzir, se possível.
+      placeholder: |
+        1. Abri https://h4ckmobile.com/pt/arsenal/
+        2. Cliquei no filtro "Tags"
+        3. A página recarregou mas nenhum filtro foi aplicado
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: O que era esperado
+      placeholder: Lista de posts filtrada mostrando só os posts com a tag selecionada.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Opcional — arraste e solte uma imagem aqui. Ajuda bastante em bugs visuais.
+    validations:
+      required: false
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors
+      description: Opcional — abra o DevTools (F12), reproduza o bug, copie os erros em vermelho da aba Console.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true
+        - label: Isto não é uma vulnerabilidade de segurança (se for, vou enviar email para contact@h4ckmobile.com)
+          required: true

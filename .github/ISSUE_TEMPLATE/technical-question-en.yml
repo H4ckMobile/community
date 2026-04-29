@@ -1,0 +1,63 @@
+name: ❓ Technical question (EN)
+description: Ask a technical question that looks like a possible bug or unclear behavior in a specific post.
+title: "[question] "
+labels: ["question", "triage", "lang:en"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before opening this**, consider [Discussions → Q&A](https://github.com/h4ckmobile/community/discussions/categories/q-a) instead.
+
+        Use this template **only** if your question looks like a possible bug, broken example, or unclear behavior in a specific post. For general technical questions ("how does X work?", "which tool should I use?"), Discussions is the right place.
+
+  - type: input
+    id: post-url
+    attributes:
+      label: Related post
+      description: Link to the post your question is about (PT or EN version).
+      placeholder: https://h4ckmobile.com/en/studies/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Be specific and include context — what part of the post, what you expected, what's confusing.
+      placeholder: |
+        In the section "Bypass com Frida", the post says to run `frida-server` on port 27042, but the example client connects to 27043. Which one is correct?
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you've already tried
+      description: Steps you took, things you checked, results you got. Helps avoid back-and-forth.
+      placeholder: |
+        - Tried both ports — 27042 connects but client times out
+        - Checked frida docs — they mention 27042 as default
+        - Searched the post for a follow-up note about port mismatch, didn't find one
+    validations:
+      required: true
+
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup
+      description: OS, tool versions, device/emulator details — anything that could affect reproduction.
+      placeholder: |
+        - macOS 14.4 (host)
+        - Android 13 emulator (Pixel 6 API 33)
+        - frida 16.2.1, frida-server 16.2.1
+        - Python 3.11.7
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
